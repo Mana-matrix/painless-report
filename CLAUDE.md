@@ -23,3 +23,11 @@ A ticket made from a delivery item carries its checks: a short statement, Automa
 - If the ticket gives the check's id (`c-xxxxxx`), you may put it in the title, `[c-xxxxxx] …`: that
   proves the check without linking.
 - Manual checks get no test; don't fake one.
+
+## Commits by Claude
+- Commit as `claude-<handle>`, where `<handle>` is the GitHub handle of the person you work for in this
+  session (e.g. `claude-octocat`), email `noreply@anthropic.com`. Set it before your first commit:
+  `git config user.name "claude-<handle>" && git config user.email noreply@anthropic.com`.
+  That keeps your work apart from the person's own commits in painless (git activity, time tracking)
+  while showing whose session made it.
+- If you don't know the handle, ask once; don't guess it from a name or an e-mail.
