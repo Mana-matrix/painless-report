@@ -1,0 +1,25 @@
+name: painless report
+description: Upload your test results (JUnit XML) as the artifact painless-tests, so painless can prove the delivery checks linked to them.
+author: painless
+branding:
+  icon: check-circle
+  color: blue
+inputs:
+  path:
+    description: Glob of the JUnit XML files your test runners wrote (several runners = several files).
+    required: false
+    default: '**/junit*.xml'
+  retention-days:
+    description: How long GitHub keeps the report.
+    required: false
+    default: '30'
+runs:
+  using: composite
+  steps:
+    - name: Upload painless-tests
+      uses: actions/upload-artifact@v4
+      with:
+        name: painless-tests
+        path: ${{ inputs.path }}
+        if-no-files-found: warn
+        retention-days: ${{ inputs.retention-days }}
