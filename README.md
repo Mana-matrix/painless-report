@@ -4,6 +4,30 @@ Lets painless prove the automated checks of a delivery with your
 own CI. Your tests stay as they are: painless reads their results and you link each check to the tests
 that prove it (by hand or with "Match tests (AI)" on the delivery protocol).
 
+## Get started
+
+### With Claude Code (no CI knowledge needed)
+
+Open your repo in Claude Code and paste:
+
+> Set up painless-report in this repo: follow https://github.com/Mana-matrix/painless-report.
+> Make every test runner write JUnit XML, add the painless-report step to our test workflow
+> (create one if there is none) running on pull requests and on pushes to `delivery/**`,
+> save its CLAUDE.md as `.claude/painless.md` and add the line `@.claude/painless.md` to our CLAUDE.md.
+
+Check the pull request it makes, merge it, then do step 3 below in painless.
+
+### By hand
+
+1. Make your test runners write JUnit XML (table below).
+2. Add the step to your test workflow (below).
+3. Give Claude Code the rules: `mkdir -p .claude && curl -fsSL https://raw.githubusercontent.com/Mana-matrix/painless-report/main/CLAUDE.md -o .claude/painless.md`,
+   then add the line `@.claude/painless.md` to your `CLAUDE.md` (create it if there is none).
+   Run the same `curl` again to update.
+4. In painless: link the branch and the tests (step 3 below).
+
+No submodule, nothing to install: GitHub fetches the action on every run.
+
 ## 1. Write a JUnit report
 
 Every common runner can write one. Put the files anywhere; the default glob is `**/junit*.xml`.
@@ -54,5 +78,6 @@ The painless GitHub App needs **Actions: read** on the repo to download the repo
 
 ## Claude Code
 
-Copy [`CLAUDE.md`](CLAUDE.md) into your repo (or append it to yours): Claude then sets this up and writes
-tests that prove delivery checks.
+[`CLAUDE.md`](CLAUDE.md) is meant for your repo (as `.claude/painless.md`, imported from your own
+`CLAUDE.md`): Claude Code then keeps the report working, writes tests that prove delivery checks and
+commits as `claude-<your GitHub handle>`, so painless tells its work apart from yours.
