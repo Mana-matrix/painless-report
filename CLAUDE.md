@@ -12,16 +12,14 @@ branch (`delivery/**`).
 - Never skip, disable or quarantine a test to get green: a check proven by a skipped test is not proven.
 
 ## Writing tests for a check
-A ticket made from a delivery item carries its checks: a short statement, Automated or Manual, and
-"How to reproduce" steps (what is done, what should be seen).
-- Write one test per automated check that does exactly what its steps say and asserts what they say
-  should be seen. Unit or API level when the check is about logic or data, browser (e2e) when it is
-  about what a user does and sees.
-- Give the test a plain, stable title that states the check in words ("wrong password shows an error").
-  painless links checks to tests by "file › title", so renaming or moving a proving test breaks the
-  link: keep titles stable, and say in the PR when you rename or move one.
-- If the ticket gives the check's id (`c-xxxxxx`), you may put it in the title, `[c-xxxxxx] …`: that
-  proves the check without linking.
+A ticket made from a delivery item lists its acceptance checks (in painless and in its GitHub issue,
+section "Tests to write"): each automated one with the test's name and "How to reproduce" steps.
+- Name the test exactly as the ticket says: `[c-xxxxxx] <check>`. The id in brackets is how painless
+  finds the test in the CI report; keep it when you rename or move the test.
+- The test does exactly what the steps say and asserts what they say should be seen. Unit or API
+  level when the check is about logic or data, browser (e2e) when it is about what a user does and sees.
+- One test per automated check (a test may carry several ids when it really proves several checks).
+- A check marked "already proven by …" needs no new test: keep the named test working.
 - Manual checks get no test; don't fake one.
 
 ## Commits by Claude

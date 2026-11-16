@@ -1,8 +1,7 @@
 # painless report
 
-Lets painless prove the automated checks of a delivery with your
-own CI. Your tests stay as they are: painless reads their results and you link each check to the tests
-that prove it (by hand or with "Match tests (AI)" on the delivery protocol).
+Lets painless prove the automated checks of a delivery with your own CI: every ticket names the test
+that proves each of its checks, your CI runs it, painless reads the result.
 
 ## Get started
 
@@ -67,12 +66,14 @@ jobs:
 ## 3. Link the branch in painless
 
 Delivery protocol → Proof by tests → Link a branch (a repo linked to the project, the branch, e.g.
-`delivery/p2`). painless reads the newest finished run on it. Then link each automated check to its tests
-(the check's **Tests** button) or let **Match tests (AI)** propose the links.
+`delivery/p2`). painless reads the newest finished run on it.
 
-A test may also name a check's id in its title, `it('[c-7k2m9q] wrong password shows an error', …)`;
-both ways count. A linked test that disappears from the report (renamed, deleted) shows as gone: the check
-isn't proven until you link it again.
+Every ticket made from a delivery item names the test for each automated check, `[c-xxxxxx] <check>`
+(in painless and in its GitHub issue). Write the test under that name and it proves the check. Tests that
+already exist are found by the ticket's **Analyze with AI** and linked for you.
+
+A test linked to a check (found by the analysis, or by hand: the check's **Tests** button) that disappears
+from the report shows as gone: the check isn't proven until it is linked again.
 
 The painless GitHub App needs **Actions: read** on the repo to download the report.
 
